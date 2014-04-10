@@ -103,18 +103,8 @@
                     } else if(a==2){
                         prize = "espresso";
                     }
-                    /*
-                    document.write("You won " + prize + "!");
-                    var img = document.createElement("img");
-                    document.write("<br> <img src='"+images2[c]+"'>");
-                    //alert("You won "+prize+"!");
-                    */
                     document.getElementById('prize-display').innerHTML += "<br>You won " + prize + "!<br> <img src='"+images2[c]+"'>";
                 } else {
-                    /*
-                    document.write("Better luck next time...");
-                    //alert("Better luck next time...");
-                    */
                     document.getElementById('prize-display').innerHTML += "<br>Better luck next time...";
                 }
             }
