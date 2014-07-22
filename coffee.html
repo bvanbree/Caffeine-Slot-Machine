@@ -6,7 +6,7 @@
                 margin-left: auto;
                 margin-right: auto;
                 width: 600px;
-                height: 500px;
+                height: 550px;
                 background-color: #888888;
                 top: 200px;
                 border-color: #000000;
@@ -14,17 +14,39 @@
                 border-style: solid;
                 font-family: sans-serif, arial;
             }
+            h1{
+                position: relative;
+                text-align: center;
+                font-weight: bold;
+                margin: 10px 0px 0px 0px;
+                padding: 0;
+                font-size: 24px;
+            }
+            h2{
+                position: relative;
+                text-align: center;
+                font-weight: normal;
+                font-size: 12px;
+                margin: 0;
+                padding: 0;
+            }
             #row{
                 position: relative;
                 width: 100%;
-                top: 50px;
-                height: 150px;
+                top: 30px;
+                height: 250px;
+                margin-left: auto;
+                margin-right: auto;
+                text-align:center;
             }
             .wheel{
                 width: 150px;
                 height: 150px;
                 border-radius: 25px;
                 background-color: #FFFFFF;
+                display: inline-block;
+                position: relative;
+                margin-right:25px;
             }
             .wheel img{
                 margin: 25px;
@@ -32,10 +54,20 @@
                 height: 100px;
             }
             #wheel1, #wheel2, #wheel3, #spin{}
+            #prize-machine, #prize-container, #prize-ingredient{
+                display: inline-block;
+                position: relative;
+                width: 150px;
+                height: 25px;
+                background-color: #FFFFFF;
+                border-color: #000000;
+                border-width: 3px;
+                border-style: solid;
+                margin-top: 10px;
+            }
             #prize-display{
                 position: relative;
                 background-color: #FFFFFF;
-                margin-top: 100px;
                 height: 180px;
                 width: 460px;
                 margin-left: auto;
@@ -46,6 +78,7 @@
                 border-style: solid;
                 padding-top: 10px;
             }
+            
             #links{
                 font-family: sans-serif, arial;
                 top: 0;
@@ -59,32 +92,31 @@
                 var button = document.getElementById('spin');
                 button.disabled=false;
             }
+            
             function rand(){
                 return Math.floor(Math.random()*3);
             }
             var wheel1 = ["coffee maker", "teapot", "espresso machine"];
-            var wheel2 = ["filter", "strainer", "tamper"];
-            var wheel3 = ["coffee grounds", "loose tea", "ground espresso beans"];
+            var wheel2 = ["mug", "teacup", "espresso cup"];
+            var wheel3 = ["coffee grounds", "loose tea", "espresso beans"];
             var images1 = ['coffee_maker.jpg', 'teapot.jpg', 'espresso_machine.jpg'];
-            var images2 = ['filter.jpg', 'strainer.jpg', 'tamper.jpg'];
-            //these image files on the 2nd wheel are definitely not images of a filter, strainer, and tamper, but
-            //they are images related to their associated beverage (and are easily recognizable)
+            var images2 = ['mug.jpg', 'teacup.jpg', 'espresso_cup.jpg'];
             var images3 = ['coffee_grounds.jpg', 'loose_tea.jpg', 'espresso_beans.jpg'];
             var i1=0;
             var i2=0;
             var i3=0;
             var a, b, c, wait;
+            
             function spin(){
                 var button = document.getElementById('spin');
                 button.disabled=true;
                 a = rand();
                 b = rand();
                 c = rand();
-                
+
                 wait = setInterval(repeat, 100);
                 setTimeout(endSpin, 3000);
                 setTimeout(endGame, 4500);
-                
             }
             function repeat(){
                 rotateWheel1();
@@ -95,10 +127,13 @@
                 clearInterval(wait);
                 //results of the spin...
                 var w1 = document.getElementById('wheel1');
+                document.getElementById('prize-machine').innerHTML += wheel1[a];
                 w1.src = images1[a];
                 var w2 = document.getElementById('wheel2');
+                document.getElementById('prize-container').innerHTML += wheel2[b];
                 w2.src = images2[b];
                 var w3 = document.getElementById('wheel3');
+                document.getElementById('prize-ingredient').innerHTML += wheel3[c];
                 w3.src = images3[c];
             }
             function endGame(){
@@ -111,9 +146,9 @@
                     } else if(a==2){
                         prize = "espresso";
                     }
-                    document.getElementById('prize-display').innerHTML += "<br>You won " + prize + "!<br> <img src='"+images2[c]+"'>";
+                    document.getElementById('prize-display').innerHTML += "<p>You won " + prize + "!<br> <img src='"+images2[c]+"'></p>";
                 } else {
-                    document.getElementById('prize-display').innerHTML += "<br>Better luck next time...";
+                    document.getElementById('prize-display').innerHTML += "<p>Better luck next time...</p>";
                 }
             }
             function rotateWheel1(){
@@ -140,23 +175,26 @@
             <div id="links">
                 <td><a title="Code on Github" href="https://github.com/bvanbree/Caffeine-Slot-Machine" class="dot"><img src="https://bvanbree.github.io/graphics/github.png"></a></td>
             </div>
+            <h1>The Caffeine Machine</h1>
+            <h2>Get three related items &amp win a beverage!</h2>
+            
             <div id="row">
-                <table style="margin-left:auto;margin-right:auto;">
-                    <tr>
-                        <td><div class="wheel">
-                            <img id="wheel1" src="coffee_maker.jpg">
-                        </div></td>
-                        <td><div class="wheel">
-                            <img id="wheel2" src="strainer.jpg">
-                        </div></td>
-                        <td><div class="wheel">
-                            <img id="wheel3" src="espresso_beans.jpg">
-                        </div></td>
-                    </tr>
-                </table>
+                <div class="wheel">
+                    <img id="wheel1" src="coffee_maker.jpg">
+                    <div id="prize-machine"></div>
+                </div>
+                <div class="wheel">
+                    <img id="wheel2" src="teacup.jpg">
+                    <div id="prize-container"></div>
+                </div>
+                <div class="wheel">
+                    <img id="wheel3" src="espresso_beans.jpg">
+                    <div id="prize-ingredient"></div>
+                </div>
             </div>
+            
             <div id="prize-display">
-                <input type="button" onclick="spin()" value="SPIN" id="spin"> 
+                <input type="button" onclick="spin()" value="SPIN" id="spin">
             </div>
         </div>
         

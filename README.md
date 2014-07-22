@@ -2,15 +2,14 @@ Caffeine-Slot-Machine
 =====================
 
 A simple slot-machine style coffee game
-made for part of a job application challenge
+made for part of a challenge/question on a job application
+(edited and improved since then)
 using HTML, CSS, and Javascript
 (and several doodles of coffee- & tea- related items)
 
 You win a prize if your spin lands on a matching set:
     teapot, teacup, and tea leaves
+    OR
     coffee pot, coffee mug, and coffee beans
-    espresso machine, coffee/espresso cup, and espresso beans
-    
-(the item and image names are different--
-based on an explanation of the slot machine items
-that I decided to swap out with different images)
+    OR
+    espresso machine, espresso cup, and espresso beans
